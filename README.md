@@ -3,6 +3,7 @@
 ![gischatbot](gischatimage.jpg)
 
 ## A Twitter bot for the #gischat community
+### Follow [#gischatbot](https://twitter.com/gischatbot)  on twitter
 
 ### gischatbot is a Twitter bot that:
 
@@ -83,8 +84,8 @@ This project is licensed under the Apache 2.0 License - see the [LICENSE.md](LIC
 ## Acknowledgments
 
 Thanks to:
-* [Maptasti-Kate](https://twitter.com/@pokateo_)
-* [Dr. Michele M Tobias](https://twitter/@MicheleTobias)
+* [Maptasti-Kate](https://twitter.com/pokateo_)
+* [Dr. Michele M Tobias](https://twitter/MicheleTobias)
 
 and everyone who provided ideas to help make this project better.
 
