@@ -3,13 +3,16 @@
 ![gischatbot](gischatimage.jpg)
 
 ## A Twitter bot for the #gischat community
-### Follow [#gischatbot](https://twitter.com/gischatbot)  on twitter
 
 ### gischatbot is a Twitter bot that:
 
 * Retweet every tweet with the hashtag #gischat
 
 * Follow all handles who tweet with #gischat
+
+* Reminds a user when it's 30 minutes to #gischat
+
+* Provide with the local time/timezone for #gischat to a user. 
 
 ## Usage
 
