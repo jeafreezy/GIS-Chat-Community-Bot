@@ -1,18 +1,20 @@
+# importing the modules
 from os import getenv
 import tweepy
 
 
 # authentication using Twitter API
-
+# creating a function so that it can be used in other modules
 def create_api():
-    """This function collects the consumer and access keys, creates an api object and returns the authenticated api
+    """
+    This function collects the consumer and access keys, creates an api object and returns the authenticated api
     object.
     :return: authenticated api object
     """
     consumer_key = getenv('CONSUMER_KEY')
     consumer_secret = getenv('CONSUMER_SECRET')
     access_token = getenv('ACCESS_TOKEN')
-    access_token_secret=getenv('ACCESS_TOKEN_SECRET')
+    access_token_secret = getenv('ACCESS_TOKEN_SECRET')
     authentication = tweepy.OAuthHandler(consumer_key, consumer_secret)
     authentication.set_access_token(access_token, access_token_secret)
     api = tweepy.API(authentication, wait_on_rate_limit=True, wait_on_rate_limit_notify=True)
