@@ -8,7 +8,7 @@
 
 * Retweet every tweet with the hashtag #gischat
 
-* Follow all handles who tweet with #gischat
+* Follow all followers.
 
 * Reminds a user when it's 30 minutes to #gischat
 
@@ -56,13 +56,13 @@ pip install -r requirements.txt
 Run on terminal 1: 
 
 ```
-python worker.py
+python search.py
 ```
 
 Run on terminal 2:
 
 ```
-python clock.py
+python gischatbot.py
 ```
 
 ## Running the tests
