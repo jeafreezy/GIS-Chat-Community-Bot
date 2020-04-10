@@ -3,6 +3,8 @@ from app.config import create_api
 import tweepy
 import time
 import logging
+import datetime
+from time import ctime
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger()
@@ -31,9 +33,9 @@ def follow_followers(api):
         else:
             break
 
-#A function that searches for a keyword and like and retweets it
-def keyword_finder(api):
 
+# A function that searches for a keyword and like and retweets it
+def keyword_finder(api):
     for tweet in limit_handler(tweepy.Cursor(api.search, [search_string for search_string in search_strings]).items()):
 
         try:
@@ -48,10 +50,17 @@ def keyword_finder(api):
             break
 
 
+def public_tweets(api):
+    if datetime.date.today().weekday() == 2 and ctime()[11:16] == '19:30':
+        tweet_to_publish = 'Hello everyone,it\'s almost time for #gischat :)'
+        api.update_status(tweet_to_publish)
+        print(tweet_to_publish)
+
 
 def main():
     api = create_api()
     while True:
+        public_tweets(api)
         keyword_finder(api)
         follow_followers(api)
         time.sleep(60)
