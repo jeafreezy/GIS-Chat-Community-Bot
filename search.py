@@ -49,7 +49,7 @@ def keyword_finder(api):
 def main():
     api = create_api()
     while True:
-        keyword_finder(api)
+        #keyword_finder(api)
         follow_followers(api)
         time.sleep(60)
 
