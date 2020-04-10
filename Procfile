@@ -1,1 +1,1 @@
-worker:python gischatbot.py
+worker: python gischatbot.py
