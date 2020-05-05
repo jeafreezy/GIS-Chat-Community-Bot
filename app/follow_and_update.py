@@ -87,25 +87,34 @@ def tweet_memes(api):
 
 # A follow_followers function that accepts api and check if they are not followed, then follow them
 
+followed_users_id=[]
+
 def follow_followers(api):
 
     for follower in limit_handler(tweepy.Cursor(api.followers).items()):
 
-        if not follower.following:
-            print(f'Following ->  {follower.name}')
-            follower.follow()
-        else:
-            print('Followed all my followers')
+            try:
 
-            break
+                if not follower.following:
+                    print(f'Following ->  {follower.name}')
+                    follower.follow()
+                    followed_users_id.append(follower.id)
+
+                else:
+                    print('Followed all followers')
+                    break
+
+            except  tweepy.RateLimitError:
+                print('Rate Limit Exceeded')
+                time.sleep(900)
 
 
 def main():
     api = create_api()
     while True:
         follow_followers(api)
-        #tweet_memes(api)
-        #public_tweets(api)
+        tweet_memes(api)
+        public_tweets(api)
         time.sleep(60)
 
 if __name__ == '__main__':
