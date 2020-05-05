@@ -56,7 +56,7 @@ pip install -r requirements.txt
 Run on terminal 1: 
 
 ```
-python update_and_follow.py
+python follow_and_update.py
 ```
 
 Run on terminal 2:
