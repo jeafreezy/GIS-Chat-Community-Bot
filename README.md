@@ -56,7 +56,7 @@ pip install -r requirements.txt
 Run on terminal 1: 
 
 ```
-python search.py
+python update_and_follow.py
 ```
 
 Run on terminal 2:
