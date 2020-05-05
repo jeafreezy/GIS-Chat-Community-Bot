@@ -104,9 +104,9 @@ def main():
     api = create_api()
     while True:
         follow_followers(api)
-        tweet_memes(api)
-        public_tweets(api)
-        time.sleep(300)
+        #tweet_memes(api)
+        #public_tweets(api)
+        time.sleep(60)
 
 if __name__ == '__main__':
     main()
