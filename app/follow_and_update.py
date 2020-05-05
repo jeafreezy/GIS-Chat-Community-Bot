@@ -36,7 +36,7 @@ def public_tweets(api):
 
             api.update_status(random_tweet)
 
-            print('Wednesday Tweet is successfull')
+            print('Wednesday Tweet is successful')
 
         #Friday tweet
         elif datetime.date.today().weekday() == 4 and ctime()[11:16] == '14:30':
@@ -46,7 +46,7 @@ def public_tweets(api):
 
             api.update_status(daily_tweets)
 
-            print('Friday Tweet is successfull')
+            print('Friday Tweet is successful')
 
         #Tuesday Tweet
 
@@ -57,7 +57,7 @@ def public_tweets(api):
 
             api.update_status(daily_tweets)
 
-            print('Tuesday Tweet is successfull')
+            print('Tuesday Tweet is successful')
 
     except tweepy.TweepError as e:
 
@@ -68,67 +68,51 @@ def tweet_memes(api):
     # Tweeting GIS memes every three days
     # day 1->Monday
     try:
+        # creating the filepaths
 
+        file_path = '../memes'
+
+        # looping through folder select
+
+        selected=[]
+
+        file_name = [os.path.join(file_path, name) for name in os.listdir(file_path) if name.endswith('.jpg')]
+
+        image = random.choice(file_name)
         if datetime.date.today().weekday() == 0 and ctime()[11:16] == '13:30':
+            if image not in selected:
+                image_id = api.media_upload(image)
 
-            # creating the filepaths
-
-            file_path = '../memes'
-
-            # looping through folder select
-
-            file_name = [os.path.join(file_path, name) for name in os.listdir(file_path) if name.endswith('.jpg')]
-
-            image = random.choice(file_name)
-
-            image_id = api.media_upload(image)
-
-            api.update_status(status='😂 #gischat #gismeme #gismemes\n(Source:www.pinterest.com/tablrk2012/gis/)\n',
+                api.update_status(status='😂 #gischat #gismeme #gismemes\n(Source:www.pinterest.com/tablrk2012/gis/)\n',
                               media_ids=[image_id.media_id])
-
-            print('Posted successfully')
+                selected.append(image)
+                print('Posted successfully')
 
         # day 2->Wednesday
 
         elif datetime.date.today().weekday() == 2 and ctime()[11:16] == '18:30':
-            # creating the filepaths
 
-            file_path = '../memes'
-
-            # looping through folder select
-
-            file_name = [os.path.join(file_path, name) for name in os.listdir(file_path) if name.endswith('.jpg')]
-
-            image = random.choice(file_name)
-
-            image_id = api.media_upload(image)
-
-            api.update_status(status='😂 #gischat #gismeme #gismemes\n(Source:www.pinterest.com/tablrk2012/gis/)\n',
+            if image not in selected:
+                image_id = api.media_upload(image)
+                api.update_status(status='😂 #gischat #gismeme #gismemes\n(Source:www.pinterest.com/tablrk2012/gis/)\n',
                               media_ids=[image_id.media_id])
-
-            print('Posted successfully')
+                selected.append(image)
+                print('Posted successfully')
+            else:
+                return 'Done'
 
         # day 3->Saturday
 
         elif datetime.date.today().weekday() == 5 and ctime()[11:16] == '18:30':
+            if image not in selected:
+                image_id = api.media_upload(image)
 
-            # creating the filepaths
-
-            file_path = '../memes'
-
-            # looping through folder select
-
-            file_name = [os.path.join(file_path, name) for name in os.listdir(file_path) if name.endswith('.jpg')]
-
-            image = random.choice(file_name)
-
-            image_id = api.media_upload(image)
-
-            api.update_status(status='😂 #gischat #gismeme #gismemes\n(Source:www.pinterest.com/tablrk2012/gis/)\n',
+                api.update_status(status='😂 #gischat #gismeme #gismemes\n(Source:www.pinterest.com/tablrk2012/gis/)\n',
                               media_ids=[image_id.media_id])
-
-            print('Posted successfully')
-
+                selected.append(image)
+                print('Posted successfully')
+            else:
+                return 'Done'
     except tweepy.TweepError as e:
 
         print('Error Message: ',e )
