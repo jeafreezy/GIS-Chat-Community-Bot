@@ -33,9 +33,5 @@ def authenticate_api(api):
     print("API is successfully created!")
     return api
 
-#Getting Geo ID for Nigeria
-#api=create_api()
-#places = api.geo_search(query="Nigeria", granularity="country")
-#print(places[0].id)
 
 create_api()
