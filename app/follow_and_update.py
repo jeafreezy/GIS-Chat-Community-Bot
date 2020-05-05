@@ -18,104 +18,151 @@ def limit_handler(cursor):
         time.sleep(1000)
 
 
-# Frequent tweets when it's 30 minutes to #gischat
-# This module searches through twitter for tweets with the hashtag
+# Weekly tweets when it's 30 minutes to #gischat
 
 def public_tweets(api):
-    if datetime.date.today().weekday() == 2 and ctime()[11:16] == '19:30':
 
-        time_difference_dict = 'GMT-> 19:00' + '\n' + 'CDT-> 14:00' + '\n' + 'WAT -> 20:00'
+    time_difference_dict = 'GMT-> 19:00' + '\n' + 'CDT-> 14:00' + '\n' + 'WAT -> 20:00'
+    tweet_to_publish = [
+        f'Hello everyone,it\'s almost time for #gischat :) \n Check your timezone below: \n {time_difference_dict}',
+        f'Hi everyone, it\'s #gischat in 30minutes :) \n Check your timezone below: \n {time_difference_dict}',
+        f'Hi there,don\'t forget it\'s almost #gischat time! \n Check your timezone below: \n {time_difference_dict}'
+    ]
+    try:
 
-        tweet_to_publish = [
-            f'Hello everyone,it\'s almost time for #gischat :) \n Check your timezone below: \n {time_difference_dict}',
-            f'Hi everyone, it\'s #gischat in 30minutes :) \n Check your timezone below: \n {time_difference_dict}',
-            f'Hi there,don\'t forget it\'s almost #gischat time! \n Check your timezone below: \n {time_difference_dict}'
-        ]
+        if datetime.date.today().weekday() == 2 and ctime()[11:16] == '19:30':
 
-        random_tweet = random.choice(tweet_to_publish)
+            random_tweet = random.choice(tweet_to_publish)
 
-        api.update_status(random_tweet)
+            api.update_status(random_tweet)
 
-    else:
+            print('Wednesday Tweet is successfull')
 
-        try:
-
-            # Tweet every day
-
-            limit = 60 * 60 * 48
+        #Friday tweet
+        elif datetime.date.today().weekday() == 4 and ctime()[11:16] == '14:30':
 
             daily_tweets = 'Hi there!\nCheck my TL for frequent and up-to-date #gischat tweets. Kindly offer help ' \
                            'where necessary! \nThank you! '
 
             api.update_status(daily_tweets)
 
-            print('Tweeted successfully')
+            print('Friday Tweet is successfull')
 
-            time.sleep(limit)
+        #Tuesday Tweet
 
-        except tweepy.TweepError as e:
+        elif datetime.date.today().weekday() == 1 and ctime()[11:16] == '17:30':
 
-            print('Error Message : ', e)
+            daily_tweets = 'Hi there!\nCheck my TL for frequent and up-to-date #gischat tweets. Kindly offer help ' \
+                           'where necessary! \nThank you! '
+
+            api.update_status(daily_tweets)
+
+            print('Tuesday Tweet is successfull')
+
+    except tweepy.TweepError as e:
+
+        print('Error Message : ', e)
 
 
 def tweet_memes(api):
     # Tweeting GIS memes every three days
+    # day 1->Monday
+    try:
 
-    # setting limit to 3 days i.e tweet post in three days
+        if datetime.date.today().weekday() == 0 and ctime()[11:16] == '13:30':
 
-    media_limit = 60 * 60 * 72
+            # creating the filepaths
 
-    # creating the filepaths
+            file_path = '../memes'
 
-    file_path = '../memes'
+            # looping through folder select
 
-    # looping through folder select
+            file_name = [os.path.join(file_path, name) for name in os.listdir(file_path) if name.endswith('.jpg')]
 
-    file_name = [os.path.join(file_path, name) for name in os.listdir(file_path) if name.endswith('.jpg')]
+            image = random.choice(file_name)
 
-    image = random.choice(file_name)
+            image_id = api.media_upload(image)
 
-    image_id = api.media_upload(image)
+            api.update_status(status='😂 #gischat #gismeme #gismemes\n(Source:www.pinterest.com/tablrk2012/gis/)\n',
+                              media_ids=[image_id.media_id])
 
-    api.update_status(status='😂 #gischat #gismeme #gismemes\n(Source:www.pinterest.com/tablrk2012/gis/)\n',
-                      media_ids=[image_id.media_id])
+            print('Posted successfully')
 
-    print('Posted successfully')
+        # day 2->Wednesday
 
-    time.sleep(media_limit)
+        elif datetime.date.today().weekday() == 2 and ctime()[11:16] == '18:30':
+            # creating the filepaths
 
+            file_path = '../memes'
+
+            # looping through folder select
+
+            file_name = [os.path.join(file_path, name) for name in os.listdir(file_path) if name.endswith('.jpg')]
+
+            image = random.choice(file_name)
+
+            image_id = api.media_upload(image)
+
+            api.update_status(status='😂 #gischat #gismeme #gismemes\n(Source:www.pinterest.com/tablrk2012/gis/)\n',
+                              media_ids=[image_id.media_id])
+
+            print('Posted successfully')
+
+        # day 3->Saturday
+
+        elif datetime.date.today().weekday() == 5 and ctime()[11:16] == '18:30':
+
+            # creating the filepaths
+
+            file_path = '../memes'
+
+            # looping through folder select
+
+            file_name = [os.path.join(file_path, name) for name in os.listdir(file_path) if name.endswith('.jpg')]
+
+            image = random.choice(file_name)
+
+            image_id = api.media_upload(image)
+
+            api.update_status(status='😂 #gischat #gismeme #gismemes\n(Source:www.pinterest.com/tablrk2012/gis/)\n',
+                              media_ids=[image_id.media_id])
+
+            print('Posted successfully')
+
+    except tweepy.TweepError as e:
+
+        print('Error Message: ',e )
+
+        time.sleep(900)
 
 # A follow_followers function that accepts api and check if they are not followed, then follow them
-
-followed_users_id=[]
 
 def follow_followers(api):
 
     for follower in limit_handler(tweepy.Cursor(api.followers).items()):
 
-            try:
+        try:
 
-                if not follower.following:
-                    print(f'Following ->  {follower.name}')
-                    follower.follow()
-                    followed_users_id.append(follower.id)
+            if not follower.following:
+                print(f'Following ->  {follower.name}')
+                follower.follow()
+            else:
+                print('Followed all followers')
+                break
 
-                else:
-                    print('Followed all followers')
-                    break
-
-            except  tweepy.RateLimitError:
-                print('Rate Limit Exceeded')
-                time.sleep(900)
+        except  tweepy.RateLimitError:
+            print('Rate Limit Exceeded')
+            time.sleep(900)
 
 
 def main():
     api = create_api()
     while True:
         follow_followers(api)
-        tweet_memes(api)
         public_tweets(api)
+        tweet_memes(api)
         time.sleep(60)
+
 
 if __name__ == '__main__':
     main()
