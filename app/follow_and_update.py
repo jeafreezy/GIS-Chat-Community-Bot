@@ -106,7 +106,7 @@ def main():
         follow_followers(api)
         tweet_memes(api)
         public_tweets(api)
-
+        time.sleep(300)
 
 if __name__ == '__main__':
     main()
