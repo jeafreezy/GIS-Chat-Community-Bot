@@ -1,10 +1,7 @@
 # importing the modules
 from os import getenv
 import tweepy
-import logging
 
-
-logger = logging.getLogger()
 # authentication using Twitter API
 # creating a function so that it can be used in other modules
 def create_api():
@@ -32,10 +29,8 @@ def authenticate_api(api):
     try:
         api.verify_credentials()
     except tweepy.TweepError as error:
-        logger.error("Error creating API", exc_info=True)
         raise error
     print("API is successfully created!")
-    logger.info("API created")
     return api
 
 #Getting Geo ID for Nigeria
