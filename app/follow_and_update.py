@@ -70,7 +70,7 @@ def tweet_memes(api):
     try:
         # creating the filepaths
 
-        file_path = 'memes'
+        file_path = './memes'
 
         # looping through folder select
 
