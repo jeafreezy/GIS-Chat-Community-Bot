@@ -30,7 +30,7 @@ def public_tweets(api):
     ]
     try:
 
-        if datetime.date.today().weekday() == 2 and ctime()[11:16] == '19:30':
+        if datetime.date.today().weekday() == 2 and ctime()[11:16] == '18:30':
 
             random_tweet = random.choice(tweet_to_publish)
 
@@ -90,7 +90,7 @@ def tweet_memes(api):
 
         # day 2->Wednesday
 
-        elif datetime.date.today().weekday() == 2 and ctime()[11:16] == '18:30':
+        elif datetime.date.today().weekday() == 2 and ctime()[11:16] == '17:50':
 
             if image not in selected:
                 image_id = api.media_upload(image)
