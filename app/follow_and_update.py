@@ -22,11 +22,14 @@ def limit_handler(cursor):
 
 def public_tweets(api):
 
-    time_difference_dict = 'GMT-> 19:00' + '\n' + 'CDT-> 14:00' + '\n' + 'WAT -> 20:00'
+    time_difference_dict = 'GMT-> 19:00' + '\n' + 'CDT-> 14:00' + '\n' + 'WAT -> 20:00' + '\n' + '12:00 PACIFIC TIME'
     tweet_to_publish = [
         f'Hello everyone,it\'s almost time for #gischat :) \n Check your timezone below: \n {time_difference_dict}',
         f'Hi everyone, it\'s #gischat in 30minutes :) \n Check your timezone below: \n {time_difference_dict}',
-        f'Hi there,don\'t forget it\'s almost #gischat time! \n Check your timezone below: \n {time_difference_dict}'
+        f'Hi there,don\'t forget it\'s almost #gischat time! \n Check your timezone below: \n {time_difference_dict}',
+        f'Join #gischat today and every Wednesday! \n It\'s a weekly twitter chat about all '
+        f'things geospatial & GIS.\n Check your timezone below: {time_difference_dict}\n cc: @MicheleTobias'
+
     ]
     try:
 
