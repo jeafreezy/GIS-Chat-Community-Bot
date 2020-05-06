@@ -70,7 +70,7 @@ def tweet_memes(api):
     try:
         # creating the filepaths
 
-        file_path = '../memes'
+        file_path = 'memes'
 
         # looping through folder select
 
@@ -90,7 +90,7 @@ def tweet_memes(api):
 
         # day 2->Wednesday
 
-        elif datetime.date.today().weekday() == 2 and ctime()[11:16] == '18:00':
+        elif datetime.date.today().weekday() == 2 and ctime()[11:16] == '18:15 ':
 
             if image not in selected:
                 image_id = api.media_upload(image)
