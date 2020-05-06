@@ -90,7 +90,7 @@ def tweet_memes(api):
 
         # day 2->Wednesday
 
-        elif datetime.date.today().weekday() == 2 and ctime()[11:16] == '17:50':
+        elif datetime.date.today().weekday() == 2 and ctime()[11:16] == '18:00':
 
             if image not in selected:
                 image_id = api.media_upload(image)
