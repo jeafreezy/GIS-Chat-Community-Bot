@@ -4,7 +4,6 @@ import datetime
 from app.config import create_api
 from time import ctime
 import random
-import os
 
 
 # function to handle twitter limits
@@ -22,15 +21,21 @@ def limit_handler(cursor):
 
 def public_tweets(api):
 
-    time_difference_dict = 'GMT-> 19:00' + '\n' + 'CDT-> 14:00' + '\n' + 'WAT -> 20:00' + '\n' + '12:00 PACIFIC TIME'
+    time_difference_str = 'GMT: 19:00' + '\n' + 'CDT: 14:00' + '\n' + 'WAT: 20:00' + '\n' + 'PACIFIC TIME: 12:00'
+
     tweet_to_publish = [
-        f'Hello everyone,it\'s almost time for #gischat :) \n Check your timezone below: \n {time_difference_dict}',
-        f'Hi everyone, it\'s #gischat in 30minutes :) \n Check your timezone below: \n {time_difference_dict}',
-        f'Hi there,don\'t forget it\'s almost #gischat time! \n Check your timezone below: \n {time_difference_dict}',
+
+        f'Hello everyone,it\'s almost time for #gischat :) \n Check your timezone below: \n {time_difference_str}',
+
+        f'Hi everyone, it\'s #gischat in 30minutes :) \n Check your timezone below: \n {time_difference_str}',
+
+        f'Hi there,don\'t forget it\'s almost #gischat time! \n Check your timezone below: \n {time_difference_str}',
+
         f'Join #gischat today and every Wednesday! \n It\'s a weekly twitter chat about all '
-        f'things geospatial & GIS.\n Check your timezone below: {time_difference_dict}\n cc: @MicheleTobias'
+        f'things geospatial & GIS.\n Check your timezone below: {time_difference_str}\n cc: @MicheleTobias'
 
     ]
+
     try:
 
         if datetime.date.today().weekday() == 2 and ctime()[11:16] == '18:30':
@@ -39,7 +44,7 @@ def public_tweets(api):
 
             api.update_status(random_tweet)
 
-            print('Wednesday Tweet is successful')
+            print('Wednesday Tweet was successful')
 
         #Friday tweet
         elif datetime.date.today().weekday() == 4 and ctime()[11:16] == '14:30':
@@ -49,7 +54,7 @@ def public_tweets(api):
 
             api.update_status(daily_tweets)
 
-            print('Friday Tweet is successful')
+            print('Friday Tweet was successful')
 
         #Tuesday Tweet
 
@@ -60,67 +65,67 @@ def public_tweets(api):
 
             api.update_status(daily_tweets)
 
-            print('Tuesday Tweet is successful')
+            print('Tuesday Tweet was successful')
 
     except tweepy.TweepError as e:
 
         print('Error Message : ', e)
 
-
-def tweet_memes(api):
-    # Tweeting GIS memes every three days
-    # day 1->Monday
-    try:
-        # creating the filepaths
-
-        file_path = './memes'
-
-        # looping through folder select
-
-        selected=[]
-
-        file_name = [os.path.join(file_path, name) for name in os.listdir(file_path) if name.endswith('.jpg')]
-
-        image = random.choice(file_name)
-        if datetime.date.today().weekday() == 0 and ctime()[11:16] == '13:30':
-            if image not in selected:
-                image_id = api.media_upload(image)
-
-                api.update_status(status='😂 #gischat #gismeme #gismemes\n(Source:www.pinterest.com/tablrk2012/gis/)\n',
-                              media_ids=[image_id.media_id])
-                selected.append(image)
-                print('Posted successfully')
-
-        # day 2->Wednesday
-
-        elif datetime.date.today().weekday() == 2 and ctime()[11:16] == '18:15 ':
-
-            if image not in selected:
-                image_id = api.media_upload(image)
-                api.update_status(status='😂 #gischat #gismeme #gismemes\n(Source:www.pinterest.com/tablrk2012/gis/)\n',
-                              media_ids=[image_id.media_id])
-                selected.append(image)
-                print('Posted successfully')
-            else:
-                return 'Done'
-
-        # day 3->Saturday
-
-        elif datetime.date.today().weekday() == 5 and ctime()[11:16] == '18:30':
-            if image not in selected:
-                image_id = api.media_upload(image)
-
-                api.update_status(status='😂 #gischat #gismeme #gismemes\n(Source:www.pinterest.com/tablrk2012/gis/)\n',
-                              media_ids=[image_id.media_id])
-                selected.append(image)
-                print('Posted successfully')
-            else:
-                return 'Done'
-    except tweepy.TweepError as e:
-
-        print('Error Message: ',e )
-
-        time.sleep(900)
+# MEME TWEET BLOCK
+# def tweet_memes(api):
+#     # Tweeting GIS memes every three days
+#     # day 1->Monday
+#     try:
+#         # creating the filepaths
+#
+#         file_path = './memes'
+#
+#         # looping through folder select
+#
+#         selected=[]
+#
+#         file_name = [os.path.join(file_path, name) for name in os.listdir(file_path) if name.endswith('.jpg')]
+#
+#         image = random.choice(file_name)
+#         if datetime.date.today().weekday() == 0 and ctime()[11:16] == '13:30':
+#             if image not in selected:
+#                 image_id = api.media_upload(image)
+#
+#                 api.update_status(status='😂 #gischat #gismeme #gismemes\n(Source:www.pinterest.com/tablrk2012/gis/)\n',
+#                               media_ids=[image_id.media_id])
+#                 selected.append(image)
+#                 print('Posted successfully')
+#
+#         # day 2->Wednesday
+#
+#         elif datetime.date.today().weekday() == 2 and ctime()[11:16] == '18:15 ':
+#
+#             if image not in selected:
+#                 image_id = api.media_upload(image)
+#                 api.update_status(status='😂 #gischat #gismeme #gismemes\n(Source:www.pinterest.com/tablrk2012/gis/)\n',
+#                               media_ids=[image_id.media_id])
+#                 selected.append(image)
+#                 print('Posted successfully')
+#             else:
+#                 return 'Done'
+#
+#         # day 3->Saturday
+#
+#         elif datetime.date.today().weekday() == 5 and ctime()[11:16] == '18:30':
+#             if image not in selected:
+#                 image_id = api.media_upload(image)
+#
+#                 api.update_status(status='😂 #gischat #gismeme #gismemes\n(Source:www.pinterest.com/tablrk2012/gis/)\n',
+#                               media_ids=[image_id.media_id])
+#                 selected.append(image)
+#                 print('Posted successfully')
+#             else:
+#                 return 'Done'
+#     except tweepy.TweepError as e:
+#
+#         print('Error Message: ',e )
+#
+#         time.sleep(900)
 
 # A follow_followers function that accepts api and check if they are not followed, then follow them
 
@@ -147,7 +152,7 @@ def main():
     while True:
         follow_followers(api)
         public_tweets(api)
-        tweet_memes(api)
+        # tweet_memes(api)
         time.sleep(60)
 
 

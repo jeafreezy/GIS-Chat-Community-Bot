@@ -22,22 +22,7 @@ class Stream_Listener(tweepy.StreamListener):
         :param tweet: tweet from listening to the stream
         """
 
-        # If the tweet is a reply or I'm its author , ignore it
-
-        #if tweet.in_reply_to_status_id is not None or tweet.user.id == self.me.id:
-            #return 'Done'
-
-        # Retweet, if not retweeted and set is_retweeted to True
-        #is_retweeted=False
-
-        #if hasattr(tweet, "retweeted_status"):
-
-            #print('Tweet has already been retweeted')
-
-            #is_retweeted=True
-
         try:
-
             tweet.retweet()
             time.sleep(5)
             tweet.favorite()
@@ -84,7 +69,7 @@ def main(keywords):
 if __name__=='__main__':
 
     keywords = ["#GISCHAT", "#gischat", "#GISChat", '#gisChat', '#gisCHAT', '#gischats', 'GISChats', '#gisCHATs',
-                '#GISCHATS', '#GIS','#gis','#geo','#GIs','#Gis','#Maps','#map','#maps']
+                '#GISCHATS', '#GIS','#geo','#geospatial','@gischatbot']
 
     main(keywords)
 
