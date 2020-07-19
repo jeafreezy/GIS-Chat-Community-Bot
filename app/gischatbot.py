@@ -84,7 +84,7 @@ def main(keywords):
 if __name__=='__main__':
 
     keywords = ["#GISCHAT", "#gischat", "#GISChat", '#gisChat', '#gisCHAT', '#gischats', 'GISChats', '#gisCHATs',
-                '#GISCHATS']
+                '#GISCHATS', '#GIS','#gis','#geo','#GIs','#Gis','#Maps','#map','#maps']
 
     main(keywords)
 
