@@ -21,25 +21,31 @@ On the platform you can:
 Tweet:
 
 ```
- #gischat
+ #gischat #GIS #geospatial or @gischatbot
 ```
 
 As a comment/tweet and it'll like and retweet the tweet and follow the user as well. 
 
-Tweet:
+### PR'S ARE WELCOMED FOR THE FOLLOWING,BUT NOTLIMITED TO THE FOLLOWING:
 
 ```
 when @gischatbot
 ```
-As a comment or a tweet. It'll reply with the time for #gischat in your timezone(in development).
+As a comment or a tweet. It'll reply with the time for #gischat in your timezone
 
 Tweet:
 
 ```
-remind @gischatbot
+remind me @gischatbot
 ```
-As a comment/tweet and it will remind the user when its 30minutes to #gischat in his/her time zone(in development).
+As a comment/tweet and it will remind the user in DM when its 30minutes to #gischat in his/her time zone.
 
+```
+@gischatbot find me <job keyword> options: <location> <['last week','last month','today']>
+e.g @gischatbot find me GIS Developer
+e.g @gischatbot find me GIS Analyst in texas,posted last week.
+```
+As a comment/tweet and it will reply the user with recent GIS jobs about the keyword.
 
 ## Local Deployment
 
