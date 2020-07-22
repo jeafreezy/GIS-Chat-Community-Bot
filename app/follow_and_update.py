@@ -1,3 +1,5 @@
+# importing libraries and modules
+
 import tweepy
 import time
 import datetime
@@ -6,8 +8,10 @@ from time import ctime
 import random
 
 
-# function to handle twitter limits
 def limit_handler(cursor):
+    '''
+    function to handle twitter rate limits
+    '''
     try:
         while True:
             yield cursor.next()
@@ -17,9 +21,13 @@ def limit_handler(cursor):
         time.sleep(1000)
 
 
-# Weekly tweets when it's 30 minutes to #gischat
-
 def public_tweets(api):
+    '''
+
+    Weekly public tweets to remind followers of gitchat time
+    Takes in the api argument
+
+    '''
 
     time_difference_str = 'GMT: 19:00' + '\n' + 'CDT: 14:00' + '\n' + 'WAT: 20:00' + '\n' + 'PACIFIC TIME: 12:00'
 
@@ -127,9 +135,14 @@ def public_tweets(api):
 #
 #         time.sleep(900)
 
-# A follow_followers function that accepts api and check if they are not followed, then follow them
 
 def follow_followers(api):
+
+    '''
+    A follower function that accepts the api,
+    checks to see if a follower is being followed,
+    if not, gisbot follows sback
+    '''
 
     for follower in limit_handler(tweepy.Cursor(api.followers).items()):
 
