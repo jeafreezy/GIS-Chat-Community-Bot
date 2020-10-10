@@ -40,7 +40,7 @@ def public_tweets(api):
         f'Hi there,don\'t forget it\'s almost #gischat time! \n Check your timezone below: \n {time_difference_str}',
 
         f'Join #gischat today and every Wednesday! \n It\'s a weekly twitter chat about all '
-        f'things geospatial & GIS.\n Check your timezone below: {time_difference_str}\n cc: @MicheleTobias'
+        f'things geospatial & GIS.\n Check your timezone below: {time_difference_str}\n'
 
     ]
 
