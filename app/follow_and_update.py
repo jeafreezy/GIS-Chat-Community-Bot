@@ -29,7 +29,7 @@ def public_tweets(api):
 
     '''
 
-    time_difference_str = 'GMT: 19:00' + '\n' + 'CDT: 14:00' + '\n' + 'WAT: 20:00' + '\n' + 'PACIFIC TIME: 12:00'
+    time_difference_str = 'GMT: 20:00' + '\n' + 'CDT: 14:00' + '\n' + 'WAT: 21:00' + '\n' + 'PACIFIC TIME: 12:00'
 
     tweet_to_publish = [
 
@@ -46,7 +46,7 @@ def public_tweets(api):
 
     try:
 
-        if datetime.date.today().weekday() == 2 and ctime()[11:16] == '18:30':
+        if datetime.date.today().weekday() == 2 and ctime()[11:16] == '19:30':
 
             random_tweet = random.choice(tweet_to_publish)
 
