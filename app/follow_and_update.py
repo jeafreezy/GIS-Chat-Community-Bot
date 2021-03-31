@@ -29,7 +29,7 @@ def public_tweets(api):
 
     '''
 
-    time_difference_str = 'GMT: 20:00' + '\n' + 'CDT: 14:00' + '\n' + 'WAT: 21:00' + '\n' + 'PACIFIC TIME: 12:00'
+    time_difference_str = 'GMT: 19:00' + '\n' + 'CDT: 14:00' + '\n' + 'WAT: 20:00' + '\n' + 'PACIFIC TIME: 12:00'
 
     tweet_to_publish = [
 
@@ -50,7 +50,7 @@ def public_tweets(api):
 
             random_tweet = random.choice(tweet_to_publish)
 
-            api.update_status(random_tweet)
+            #api.update_status(random_tweet)
 
             print('Wednesday Tweet was successful')
 
