@@ -1,3 +1,2 @@
-worker: python ./app/gischatbot.py
-web: python ./app/server.py
-search: python ./app/follow_and_update.py
+worker: python ./gischatbot.py
+search: python ./follow_and_tweet.py

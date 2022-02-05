@@ -6,13 +6,9 @@
 
 ### gischatbot is a Twitter bot that:
 
-* Retweet every tweet with the hashtag #gischat
+* Retweet every tweet with the hashtag #gischat, #mappymeme
 
-* Follow all followers.
-
-* Reminds a user when it's 30 minutes to #gischat
-
-* Provide with the local time/timezone for #gischat to a user. 
+* Follows all followers.
 
 ## Usage
 
@@ -21,7 +17,7 @@ On the platform you can:
 Tweet:
 
 ```
- #gischat #GIS #geospatial or @gischatbot
+ #gischat #GIS #geospatial #mappymeme or @gischatbot
 ```
 
 As a comment/tweet and it'll like and retweet the tweet and follow the user as well. 
@@ -36,7 +32,7 @@ Assign proper values to the environment variables in the .env file.
 Run:
 
 ```
-pip install -r requirements.txt
+pipenv install
 ```
 
 Run on terminal 1: 
