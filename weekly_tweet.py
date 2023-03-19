@@ -1,6 +1,5 @@
 import tweepy
-from config import create_api, logging
-from utils import WEEKLY_TWEET, tweet_time
+from config import create_api, logging, WEEKLY_TWEET, tweet_time
 import time
 
 

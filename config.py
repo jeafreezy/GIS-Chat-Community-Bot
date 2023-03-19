@@ -3,7 +3,8 @@ from os import getenv
 import tweepy
 from typing import Union
 from mastodon import Mastodon
-
+import datetime
+import time
 
 TWITTER_CONSUMER_KEY = getenv("TWITTER_CONSUMER_KEY")
 TWITTER_CONSUMER_SECRET = getenv("TWITTER_CONSUMER_SECRET")
@@ -57,3 +58,13 @@ def create_api(social_network: str) -> Union[tweepy.Client]:
 
 
 logging.basicConfig(level=logging.INFO)
+
+
+def tweet_time() -> bool:
+    return datetime.date.today().weekday() == 3 and time.ctime()[11:16] == "14:30"
+
+
+WEEKLY_TWEET: str = (
+    "Hi there!\nCheck my TL for frequent and up-to-date #gischat tweets. Kindly offer help "
+    "where necessary! \nThank you! "
+)
