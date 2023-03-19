@@ -1,15 +1,10 @@
 import tweepy
-import logging
 import time
-from config import (
-    DELAY,
-    FILTER_RULES,
-    create_api,
-)
+from config import DELAY, FILTER_RULES, create_api, logging
 
 
 class TweetStreamer(tweepy.StreamingClient):
-    """TWEETS STREAMER"""
+    """This class inherits from tweepy Streaming Client to access live tweets from Twitter with the specified filter rules i.e hashtags"""
 
     def __init__(self) -> None:
         self.twitter_client: tweepy.Client = create_api("twitter")
@@ -22,7 +17,7 @@ class TweetStreamer(tweepy.StreamingClient):
 
     def on_tweet(self, tweet):
         """
-        Checks the status of the tweet. Like(i.e favourite) and retweet it if not already done
+        Checks the status of the tweet. Like and retweet it
         """
         try:
             tweet_id = tweet.id
@@ -46,7 +41,6 @@ class TweetStreamer(tweepy.StreamingClient):
 
 
 if __name__ == "__main__":
-    logging.basicConfig(level=logging.INFO)
     stream = TweetStreamer()
     for hashtag in FILTER_RULES:
         stream.add_rules(tweepy.StreamRule(hashtag))

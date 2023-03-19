@@ -1,6 +1,6 @@
 import mastodon
 import tweepy
-from config import create_api, logging, WEEKLY_TWEET, tweet_time
+from config import create_api, logging, WEEKLY_POST, tweet_time
 import time
 
 
@@ -10,8 +10,8 @@ def weekly_posts(twitter_client, mastodon_client):
     """
     try:
         if tweet_time():
-            twitter_client.create_tweet(text=WEEKLY_TWEET)
-            mastodon_client.status_post(status=WEEKLY_TWEET)
+            twitter_client.create_tweet(text=WEEKLY_POST)
+            mastodon_client.status_post(status=WEEKLY_POST)
             logging.info("Weekly posts was sent successfully")
         logging.info("Not tweet day yet...")
     except (tweepy.TweepyException, mastodon.MastodonError) as error:
