@@ -4,9 +4,12 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+mypy = "*"
 
 [packages]
 tweepy = "*"
+"mastodon.py" = "*"
+black = "*"
 
 [requires]
-python_version = "3.8"
+python_version = "3.9"

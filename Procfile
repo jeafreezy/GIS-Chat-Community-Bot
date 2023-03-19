@@ -1,2 +1,2 @@
-worker: python ./gischatbot.py
-search: python ./follow_and_tweet.py
+stream: python ./stream_tweets.py
+tweet: python ./weekly_tweet.py
