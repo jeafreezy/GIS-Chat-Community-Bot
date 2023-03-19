@@ -1,3 +1,4 @@
+import re
 import tweepy
 import time
 from config import DELAY, FILTER_RULES, create_api, logging
@@ -20,8 +21,9 @@ class TweetStreamer(tweepy.StreamingClient):
         Checks the status of the tweet. Like and retweet it
         """
         try:
-            # to prevent the bot from retweeting replies under a tweet with the hastag
-            if tweet.referenced_tweets == None:
+            # to prevent the bot from retweeting replies under a tweet without the hastags
+            tags_regex = re.compile("|".join(FILTER_RULES))
+            if tags_regex.search(tweet.text):
                 tweet_id = tweet.id
                 self.twitter_client.retweet(tweet_id=tweet_id)
                 logging.info(f"Tweet retweeted: {tweet} -- {tweet_id}")
