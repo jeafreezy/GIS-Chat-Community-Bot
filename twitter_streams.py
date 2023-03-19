@@ -20,7 +20,6 @@ class TweetStreamer(tweepy.StreamingClient):
         Checks the status of the tweet. Like and retweet it
         """
         try:
-            print(tweet.referenced_tweets)
             # to prevent the bot from retweeting replies under a tweet with the hastag
             if tweet.referenced_tweets == None:
                 tweet_id = tweet.id
