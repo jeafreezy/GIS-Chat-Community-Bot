@@ -20,13 +20,15 @@ class TweetStreamer(tweepy.StreamingClient):
         Checks the status of the tweet. Like and retweet it
         """
         try:
-            tweet_id = tweet.id
-
-            self.twitter_client.retweet(tweet_id=tweet_id)
-            logging.info(f"Tweet retweeted: {tweet} -- {tweet_id}")
-            time.sleep(DELAY)
-            self.twitter_client.like(tweet_id=tweet_id)
-            logging.info(f"Tweet liked: {tweet} -- {tweet_id}")
+            print(tweet.referenced_tweets)
+            # to prevent the bot from retweeting replies under a tweet with the hastag
+            if tweet.referenced_tweets == None:
+                tweet_id = tweet.id
+                self.twitter_client.retweet(tweet_id=tweet_id)
+                logging.info(f"Tweet retweeted: {tweet} -- {tweet_id}")
+                time.sleep(DELAY)
+                self.twitter_client.like(tweet_id=tweet_id)
+                logging.info(f"Tweet liked: {tweet} -- {tweet_id}")
         except tweepy.TweepyException as error:
             logging.info(f"An error occurred while retweeting -> {error}")
 
@@ -46,4 +48,4 @@ if __name__ == "__main__":
         stream.add_rules(tweepy.StreamRule(hashtag))
         logging.info(f"Added rule -> {hashtag}")
         time.sleep(DELAY)
-    stream.filter()
+    stream.filter(tweet_fields=["referenced_tweets"])
