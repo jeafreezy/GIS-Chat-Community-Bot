@@ -1,3 +1,4 @@
+import mastodon
 import tweepy
 from config import create_api, logging, WEEKLY_TWEET, tweet_time
 import time
@@ -13,7 +14,7 @@ def weekly_posts(twitter_client, mastodon_client):
             mastodon_client.status_post(status=WEEKLY_TWEET)
             logging.info("Weekly posts was sent successfully")
         logging.info("Not tweet day yet...")
-    except tweepy.TweepyException as error:
+    except (tweepy.TweepyException, mastodon.MastodonError) as error:
         logging.info(f"An error occurred while sending weekly tweet ->  {error}")
 
 
