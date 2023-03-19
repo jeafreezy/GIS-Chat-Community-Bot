@@ -30,7 +30,7 @@ FILTER_RULES = [
 ]
 
 
-def create_api(social_network: str) -> Union[tweepy.Client]:
+def create_api(social_network: str) -> Union[tweepy.Client, Mastodon]:
     """
     This function creates an authenticated instance for the provided social network
 

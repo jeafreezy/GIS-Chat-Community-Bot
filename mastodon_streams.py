@@ -18,5 +18,5 @@ class MastodonStreamListener(StreamListener):
 # like & retweet
 
 if __name__ == "__main__":
-    # mastodon_instance.status_post("hello world!")
+    #
     ...
