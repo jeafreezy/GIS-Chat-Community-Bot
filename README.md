@@ -1,14 +1,14 @@
 # gischatbot
 
-![gischatbot](gischatimage.jpg)
+![gischatbot](assets/gischatbot-logo.jpg)
 
 ## A Twitter bot for the #gischat community
 
 ### gischatbot is a Twitter bot that:
 
-* Retweet every tweet with the hashtag #gischat, #mappymeme
+- Retweet every tweet with the hashtag #gischat, #mappymeme
 
-* Follows all followers.
+- Follows all followers.
 
 ## Usage
 
@@ -20,8 +20,7 @@ Tweet:
  #gischat #GIS #geospatial #mappymeme or @gischatbot
 ```
 
-As a comment/tweet and it'll like and retweet the tweet and follow the user as well. 
-
+As a comment/tweet and it'll like and retweet the tweet and follow the user as well.
 
 ## Local Deployment
 
@@ -35,7 +34,7 @@ Run:
 pipenv install
 ```
 
-Run on terminal 1: 
+Run on terminal 1:
 
 ```
 python follow_and_update.py
@@ -59,6 +58,7 @@ NOTE: When you send PRs,kindy include your name in the Authors list below as wel
 ```
 when @gischatbot
 ```
+
 As a comment or a tweet. It'll reply with the time for #gischat in your timezone
 
 Tweet:
@@ -66,6 +66,7 @@ Tweet:
 ```
 remind me @gischatbot
 ```
+
 As a comment/tweet and it will remind the user in DM when its 30minutes to #gischat in his/her time zone.
 
 ```
@@ -75,6 +76,7 @@ e.g @gischatbot find me GIS Analyst in texas,posted last week.
 Example response:
 Hello @username, I found you some jobs that match your request.See them here <link to the job tweet> Goodluck! etc
 ```
+
 As a comment/tweet and it will reply the user with recent GIS jobs about the keyword.
 
 ## Authors:
@@ -90,9 +92,8 @@ This project is licensed under the Apache 2.0 License - see the [LICENSE.md](./L
 ## Acknowledgments
 
 Thanks to:
-* [Maptasti-Kate](https://twitter.com/pokateo_)
-* [Dr. Michele M Tobias](https://twitter/MicheleTobias)
+
+- [Maptasti-Kate](https://twitter.com/pokateo_)
+- [Dr. Michele M Tobias](https://twitter/MicheleTobias)
 
 and everyone who provided ideas to help make this project better.
-
-

@@ -108,3 +108,6 @@ venv.bak/
 
 # vscode files
 .vscode
+
+Pipfile.lock 
+.mypy_cache
