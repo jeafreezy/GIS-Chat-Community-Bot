@@ -3,51 +3,53 @@ import logging
 import time
 from config import (
     DELAY,
+    FILTER_RULES,
     create_api,
-    TWITTER_CONSUMER_KEY,
-    TWITTER_CONSUMER_SECRET,
-    TWITTER_ACCESS_TOKEN,
-    TWITTER_ACCESS_TOKEN_SECRET,
 )
-from utils import KEYWORDS
 
 
-class TweetStreamer(tweepy.Stream):
+class TweetStreamer(tweepy.StreamingClient):
     """TWEETS STREAMER"""
 
     def __init__(self) -> None:
-        self.api_service = create_api("twitter")
+        self.twitter_client: tweepy.Client = create_api("twitter")
         super(TweetStreamer, self).__init__(
-            consumer_key=TWITTER_CONSUMER_KEY,
-            consumer_secret=TWITTER_CONSUMER_SECRET,
-            access_token=TWITTER_ACCESS_TOKEN,
-            access_token_secret=TWITTER_ACCESS_TOKEN_SECRET,
+            bearer_token=self.twitter_client.bearer_token
         )
 
-    def on_status(self, tweet):
+    def on_connect(self):
+        logging.info(f"Successfully connected to streaming API")
+
+    def on_tweet(self, tweet):
         """
         Checks the status of the tweet. Like(i.e favourite) and retweet it if not already done
         """
         try:
-            self.retweet(id=tweet.id)
-            logging.info(f"Tweet retweeted: {id}")
+            tweet_id = tweet.id
+
+            self.twitter_client.retweet(tweet_id=tweet_id)
+            logging.info(f"Tweet retweeted: {tweet} -- {tweet_id}")
             time.sleep(DELAY)
-            self.api_service.create_favorite(id=tweet.id)
-            logging.info(f"Tweet liked: {id}")
+            self.twitter_client.like(tweet_id=tweet_id)
+            logging.info(f"Tweet liked: {tweet} -- {tweet_id}")
         except tweepy.TweepyException as error:
             logging.info(f"An error occurred while retweeting -> {error}")
 
+    def on_connection_error(self):
+        logging.error(f"An error occurred while connecting to streaming service")
+
     def on_request_error(self, status_code):
         """
-        When encountering an error  with a status code greater than 400, sleep for a while
+        When a status code that is non-200 is encountered
         """
-
-        if status_code >= 400:
-            logging.info(f"An error occurred. Status code -> {status_code}")
-            # sleep for a while
-            time.sleep(DELAY)
+        logging.error(f"An error occurred. Status code -> {status_code}")
 
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
-    TweetStreamer().filter(track=KEYWORDS, languages=["en"])
+    stream = TweetStreamer()
+    for hashtag in FILTER_RULES:
+        stream.add_rules(tweepy.StreamRule(hashtag))
+        logging.info(f"Added rule -> {hashtag}")
+        time.sleep(DELAY)
+    stream.filter()
