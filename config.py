@@ -27,6 +27,7 @@ FILTER_RULES = [
     "#Spatialnode",
     "@gischatbot",
     "#geospatial",
+    "#gischatbot"
 ]
 
 
