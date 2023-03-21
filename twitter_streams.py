@@ -45,6 +45,10 @@ class TweetStreamer(tweepy.StreamingClient):
 
 if __name__ == "__main__":
     stream = TweetStreamer()
+    previous_rules = stream.get_rules().data
+    if previous_rules:
+        stream.delete_rules(previous_rules)
+        logging.info(f"Deleted rules -> {previous_rules}")
     for hashtag in FILTER_RULES:
         stream.add_rules(tweepy.StreamRule(hashtag))
         logging.info(f"Added rule -> {hashtag}")
