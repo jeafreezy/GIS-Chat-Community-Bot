@@ -27,7 +27,7 @@ FILTER_RULES = [
     "#Spatialnode",
     "@gischatbot",
     "#geospatial",
-    "#gischatbot"
+    "#gischatbot",
 ]
 
 
@@ -58,7 +58,7 @@ def create_api(social_network: str) -> Union[tweepy.Client, Mastodon]:
         return mastodon_service
 
 
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.DEBUG)
 
 
 def tweet_time() -> bool:

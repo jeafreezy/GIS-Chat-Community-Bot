@@ -47,10 +47,16 @@ if __name__ == "__main__":
     stream = TweetStreamer()
     previous_rules = stream.get_rules().data
     if previous_rules:
-        stream.delete_rules(previous_rules)
-        logging.info(f"Deleted rules -> {previous_rules}")
-    for hashtag in FILTER_RULES:
-        stream.add_rules(tweepy.StreamRule(hashtag))
-        logging.info(f"Added rule -> {hashtag}")
-        time.sleep(DELAY)
-    stream.filter(tweet_fields=["referenced_tweets"])
+        logging.info(f"Rules already exist -> {previous_rules}")
+    else:
+        for hashtag in FILTER_RULES:
+            stream.add_rules(tweepy.StreamRule(hashtag))
+            logging.info(f"Added rule -> {hashtag}")
+            time.sleep(DELAY)
+    try:
+        stream.filter()
+    except KeyboardInterrupt:
+        stream.session.close()
+        stream.on_disconnect()
+        stream.running = False
+        logging.warning("Keyboard Interrupt. Closing connection...")
