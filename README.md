@@ -73,5 +73,6 @@ Thanks to:
 
 - [Maptasti-Kate](https://twitter.com/pokateo_)
 - [Dr. Michele M Tobias](https://twitter/MicheleTobias)
+- [@nickbearman@fosstodon.org](https://mapstodon.space/@nickbearman@fosstodon.org) for supporting the development of the Mastodon bot.
 
 and everyone who provided ideas to help make this project better.
