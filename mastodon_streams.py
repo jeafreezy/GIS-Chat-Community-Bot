@@ -20,7 +20,7 @@ class MastodonStreamListener(StreamListener):
         ]
         tags_regex = re.compile("|".join(valid_tags))
         try:
-            if tags_regex.search(status.content):
+            if tags_regex.search(str(status.content).lower()):
                 status_id = status.id
                 self.mastodon_client.status_favourite(status_id)
                 logging.info(f"Status liked successfully->{status_id}")
