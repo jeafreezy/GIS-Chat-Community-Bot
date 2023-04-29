@@ -23,7 +23,7 @@ class MastodonStreamListener(StreamListener):
             if tags_regex.search(str(status.content).lower()):
                 status_id = status.id
                 self.mastodon_client.status_favourite(status_id)
-                logging.info(f"Status liked successfully->{status_id}")
+                logging.info(f"Status liked successfully ->{status_id}")
                 time.sleep(DELAY)
                 self.mastodon_client.status_reblog(status_id)
                 logging.info(f"Status boosted successfully->{status_id}")
