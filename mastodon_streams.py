@@ -1,7 +1,6 @@
-import logging
 import time
 from mastodon import Mastodon, StreamListener, MastodonError
-from config import DELAY, FILTER_RULES, create_api
+from config import DELAY, FILTER_RULES, create_api, logging
 import re
 
 
@@ -33,4 +32,9 @@ class MastodonStreamListener(StreamListener):
 
 if __name__ == "__main__":
     mastodon_instance = create_api("mastodon")
-    mastodon_instance.stream_public(listener=MastodonStreamListener(mastodon_instance))
+    mastodon_instance.stream_public(
+        listener=MastodonStreamListener(mastodon_instance), remote=True
+    )
+    mastodon_instance.stream_public(
+        listener=MastodonStreamListener(mastodon_instance), local=True
+    )

@@ -8,7 +8,7 @@ mypy = "*"
 
 [packages]
 tweepy = "*"
-"mastodon.py" = "*"
+"mastodon.py" = "==1.8.1"
 black = "*"
 
 [requires]

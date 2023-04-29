@@ -58,14 +58,4 @@ def create_api(social_network: str) -> Union[tweepy.Client, Mastodon]:
         return mastodon_service
 
 
-logging.basicConfig(level=logging.DEBUG)
-
-
-def tweet_time() -> bool:
-    return datetime.date.today().weekday() == 3 and time.ctime()[11:16] == "14:30"
-
-
-WEEKLY_POST: str = (
-    "Hi there!\nCheck my TL for frequent and up-to-date #gischat tweets. Kindly offer help "
-    "where necessary! \nThank you! "
-)
+logging.basicConfig(level=logging.DEBUG, format="%(levelname)s:%(asctime)s:%(message)s")
