@@ -2,6 +2,7 @@ import time
 from mastodon import Mastodon, StreamListener, MastodonError
 from config import DELAY, FILTER_RULES, create_api, logging
 import re
+import multiprocessing
 
 
 class MastodonStreamListener(StreamListener):
@@ -30,11 +31,30 @@ class MastodonStreamListener(StreamListener):
             logging.error(f"An error occured while interacting with post -> {error}")
 
 
-if __name__ == "__main__":
+def local_stream():
+    """Connect to the local streams"""
+    mastodon_instance = create_api("mastodon")
+    mastodon_instance.stream_public(
+        listener=MastodonStreamListener(mastodon_instance), local=True
+    )
+
+
+def remote_stream():
+    """Connect to remote servers"""
     mastodon_instance = create_api("mastodon")
     mastodon_instance.stream_public(
         listener=MastodonStreamListener(mastodon_instance), remote=True
     )
-    mastodon_instance.stream_public(
-        listener=MastodonStreamListener(mastodon_instance), local=True
+
+
+if __name__ == "__main__":
+    local_process = multiprocessing.Process(
+        target=local_stream,
     )
+    local_process.start()
+    remote_process = multiprocessing.Process(
+        target=remote_stream,
+    )
+    remote_process.start()
+    local_process.join()
+    remote_process.join()
