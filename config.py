@@ -1,30 +1,24 @@
 import logging
-from os import getenv
 import tweepy
 from typing import Union
 from mastodon import Mastodon
-import datetime
-import time
+from decouple import config
 
-TWITTER_CONSUMER_KEY = getenv("TWITTER_CONSUMER_KEY")
-TWITTER_CONSUMER_SECRET = getenv("TWITTER_CONSUMER_SECRET")
-TWITTER_ACCESS_TOKEN = getenv("TWITTER_ACCESS_TOKEN")
-TWITTER_ACCESS_TOKEN_SECRET = getenv("TWITTER_ACCESS_TOKEN_SECRET")
-MASTODON_ACCESS_TOKEN = getenv("MASTODON_ACCESS_TOKEN")
-MASTODON_CLIENT_ID = getenv("MASTODON_CLIENT_ID")
-MASTODON_CLIENT_SECRET = getenv("MASTODON_CLIENT_SECRET")
-MASTODON_BASE_URL = getenv("MASTODON_BASE_URL")
-DELAY = int(getenv("DELAY", "3"))
-TWITTER_BEARER_TOKEN = getenv("TWITTER_BEARER_TOKEN")
+TWITTER_CONSUMER_KEY = config("TWITTER_CONSUMER_KEY")
+TWITTER_CONSUMER_SECRET = config("TWITTER_CONSUMER_SECRET")
+TWITTER_ACCESS_TOKEN = config("TWITTER_ACCESS_TOKEN")
+TWITTER_ACCESS_TOKEN_SECRET = config("TWITTER_ACCESS_TOKEN_SECRET")
+MASTODON_ACCESS_TOKEN = config("MASTODON_ACCESS_TOKEN")
+MASTODON_CLIENT_ID = config("MASTODON_CLIENT_ID")
+MASTODON_CLIENT_SECRET = config("MASTODON_CLIENT_SECRET")
+MASTODON_BASE_URL = config("MASTODON_BASE_URL")
+DELAY = int(config("DELAY", "3"))
+TWITTER_BEARER_TOKEN = config("TWITTER_BEARER_TOKEN")
+
 FILTER_RULES = [
-    "#GISCHAT",
     "#gischat",
-    "#GISChat",
-    "#gisChat",
     "#mappymeme",
-    "#GISCHATS",
-    "#spatialnode",
-    "#Spatialnode",
+    "#gischats",
     "@gischatbot",
     "#geospatial",
     "#gischatbot",

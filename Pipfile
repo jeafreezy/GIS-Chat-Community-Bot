@@ -10,6 +10,7 @@ mypy = "*"
 tweepy = "*"
 "mastodon.py" = "==1.8.1"
 black = "*"
+python-decouple = "*"
 
 [requires]
 python_version = "3.9"
