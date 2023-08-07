@@ -18,7 +18,6 @@ class MastodonStreamListener(StreamListener):
             for tag in FILTER_RULES
         ]
         tags_regex = re.compile("|".join(valid_tags))
-        logging.info(f"Raw content ->{status}")
         try:
             if tags_regex.search(str(status.content).lower()):
                 status_id = status.id
@@ -58,5 +57,5 @@ if __name__ == "__main__":
     # remote_process.start()
     # local_process.join()
     # remote_process.join()
-    # local_stream()
-    remote_stream()
+    local_stream()
+    # remote_stream()
