@@ -57,5 +57,5 @@ if __name__ == "__main__":
     # remote_process.start()
     # local_process.join()
     # remote_process.join()
-    local_stream()
-    # remote_stream()
+    # local_stream()
+    remote_stream()
