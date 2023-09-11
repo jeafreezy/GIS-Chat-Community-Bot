@@ -18,7 +18,6 @@ class MastodonStreamListener(StreamListener):
             for tag in FILTER_RULES
         ]
         tags_regex = re.compile("|".join(valid_tags))
-        logging.info(f"Raw content ->{status}")
         try:
             if tags_regex.search(str(status.content).lower()):
                 status_id = status.id
@@ -31,32 +30,13 @@ class MastodonStreamListener(StreamListener):
             logging.error(f"An error occured while interacting with post -> {error}")
 
 
-def local_stream():
-    """Connect to the local streams"""
+def main(local=False):
+    """Connect to local/remote servers"""
     mastodon_instance = create_api("mastodon")
-    mastodon_instance.stream_public(
-        listener=MastodonStreamListener(mastodon_instance), local=True
-    )
-
-
-def remote_stream():
-    """Connect to remote servers"""
-    mastodon_instance = create_api("mastodon")
-    mastodon_instance.stream_public(
-        listener=MastodonStreamListener(mastodon_instance), remote=True
+    mastodon_instance.stream_hashtag(
+        listener=MastodonStreamListener(mastodon_instance), local=local, tag="gischat"
     )
 
 
 if __name__ == "__main__":
-    # local_process = multiprocessing.Process(
-    #     target=local_stream,
-    # )
-    # local_process.start()
-    # remote_process = multiprocessing.Process(
-    #     target=remote_stream,
-    # )
-    # remote_process.start()
-    # local_process.join()
-    # remote_process.join()
-    # local_stream()
-    remote_stream()
+    main()
